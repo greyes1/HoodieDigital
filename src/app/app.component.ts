@@ -9,6 +9,6 @@ import { MouseEvent } from '@agm/core';
 
 export class AppComponent {
   title: string = 'AptSquad';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = 41.881832;
+  lng: number = -87.623177;
 }
