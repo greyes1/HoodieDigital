@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,3 +13,4 @@ export class AppComponent {
   lat: number = 41.881832;
   lng: number = -87.623177;
 }
+
