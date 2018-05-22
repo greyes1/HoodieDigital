@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AgmCoreModule } from '@agm/core';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   declarations: [
@@ -15,6 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     BrowserModule,
     FormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({

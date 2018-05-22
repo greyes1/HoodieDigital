@@ -1,12 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!DOCTYPE html>
 <html>
-<head>
-<title>
-  "Nice Meme!"
-</title>
-</head>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  </head>
 <body>
+  <header>
+    <nav>
+      <button onclick="login()"  mat-button>Sign in</button>
+      <button mat-button>Log out</button>
+    </nav>
+  </header>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg"></script>-->
 <!--<script  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>-->
 <div style="text-align:center">
@@ -35,8 +41,59 @@
     >
     </agm-marker>
   <!--<agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>-->
-</agm-map>
+  </agm-map>
+  <span id="userName"></span>
 </div>
 </body>
+<script>
+  var firebase = require('firebase');
+  var firebaseui = require('firebaseui');
+  var config = {
+    apiKey: "AIzaSyBZo_ZgQnfSsBfgMNbYcJxBqpXyVRGqUZ0",
+    authDomain: "hoodiedigital-530c8.firebaseapp.com",
+    databaseURL: "https://hoodiedigital-530c8.firebaseio.com",
+    projectId: "hoodiedigital-530c8",
+    storageBucket: "hoodiedigital-530c8.appspot.com",
+    messagingSenderId: "231249521118"
+  };
+  ui.start('#firebaseui-auth-container', {
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Other config options...
+  });
+  firebase.initializeApp(config);
+
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
