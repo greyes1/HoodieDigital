@@ -18,18 +18,25 @@
   </h4>
   <!--<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
 </div>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker
-    *ngFor="let m of markers;"
-    [latitude]="m.markerLat"
-    [longitude]="m.markerLng"
-    [label] = "m.label"
-    [draggable]="m.draggable"
-  >
-
-  </agm-marker>
-  <agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>
+<div class="container">
+  <div class="form-group">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+  </div>
+  <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+  <agm-map >
+    <agm-marker
+      *ngFor="let m of markers;"
+      [latitude]="m.markerLat"
+      [longitude]="m.markerLng"
+      [label] = "m.label"
+      [draggable]="m.draggable"
+    >
+    </agm-marker>
+  <!--<agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>-->
 </agm-map>
+</div>
 </body>
 </html>
 
