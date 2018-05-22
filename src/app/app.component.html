@@ -3,6 +3,8 @@
 <html>
 <head>
   <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 </head>
 <body>
   <header>
@@ -28,6 +30,8 @@
   <span id="userName"></span>
 </body>
 <script>
+  var firebase = require('firebase');
+  var firebaseui = require('firebaseui');
   var config = {
     apiKey: "AIzaSyBZo_ZgQnfSsBfgMNbYcJxBqpXyVRGqUZ0",
     authDomain: "hoodiedigital-530c8.firebaseapp.com",
@@ -36,23 +40,13 @@
     storageBucket: "hoodiedigital-530c8.appspot.com",
     messagingSenderId: "231249521118"
   };
-
+  ui.start('#firebaseui-auth-container', {
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Other config options...
+  });
   firebase.initializeApp(config);
-  var database = firebase.database();
-  function login() {
-    function newLogin(user) {
-      if (user) {
-        app(user);
-      } else {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider);
-      }
-    }
-    firebase.auth().onAuthStateChanged(newLogin);
-  }
-  function app(user) {
-    document.getElementById("userName").innerHTML = user.displayName;
-  }
 
 </script>
 </html>
