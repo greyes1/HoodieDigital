@@ -35,6 +35,26 @@ export class AppComponent implements OnInit{
       draggable: false
     }
   ];
+  navLinks: link[] = [
+    {
+      label: "College"
+    },
+    {
+      label: "Restaurants"
+    },
+    {
+      label: "Lifestyle"
+    },
+    {
+      label: "Crime"
+    },
+    {
+      label: "Entertainment"
+    },
+    {
+      label: "Transit"
+    }
+  ];
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -71,5 +91,8 @@ interface marker{
   markerLng: number;
   label?: string;
   draggable: boolean;
+}
+interface link{
+  label?: string;
 }
 

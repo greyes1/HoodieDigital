@@ -8,10 +8,8 @@
   </head>
 <body>
   <header>
-    <nav>
       <button onclick="login()"  mat-button>Sign in</button>
       <button mat-button>Log out</button>
-    </nav>
   </header>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg"></script>-->
 <!--<script  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>-->
@@ -28,10 +26,21 @@
   <div class="form-group">
     <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
   </div>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+       *ngFor="let link of navLinks"
+       position= 0>
+       <!--[routerLink]="link.path"-->
+       <!--routerLinkActive #rla="routerLinkActive"-->
+       <!--[active]="rla.isActive">-->
+      {{link.label}}
+    </a>
+  </nav>
+
   <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
-  <agm-map >
+  <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker
       *ngFor="let m of markers;"
       [latitude]="m.markerLat"
@@ -66,34 +75,4 @@
 
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
