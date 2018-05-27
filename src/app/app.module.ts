@@ -10,12 +10,18 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
+import { NavComponent } from './nav/nav.component';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginDialogComponent,
-    MyDialogComponent
+    MyDialogComponent,
+    NavComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +35,9 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AgmCoreModule.forRoot({
       // please get your own API key here:AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en

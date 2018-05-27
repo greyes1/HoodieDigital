@@ -1,0 +1,6 @@
+<nav class = "nav">
+  <ul class="nav-bar-right">
+    <button *ngIf="!authenticated" mat-stroked-button (click)="login()">Login</button>
+    <button *ngIf="authenticated" mat-button (click)="logout()">Log out</button>
+  </ul>
+</nav>
