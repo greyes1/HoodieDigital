@@ -1,4 +1,10 @@
 agm-map {
-  height: 300px;
+  height: 400px;
 }
 
+#googft-mapCanvas {
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+}

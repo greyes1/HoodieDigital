@@ -11,48 +11,48 @@ import { MapsAPILoader } from '@agm/core';
 })
 
 export class AppComponent implements OnInit{
-
   title: string = 'AptSquad';
   public lat: number = 41.8781;
   public lng: number = -87.6298;
-  public zoom: number = 8;
+  public zoom: number = 10.5;
   public searchControl: FormControl;
 
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   markers: marker[] = [
     {
       markerLat: 41.8827,
       markerLng: -87.6233,
-      label: "Bean",
+      label: 'Bean',
       draggable: false
     },
     {
       markerLat: 41.8789,
       markerLng: -87.6359,
-      label: "Willis Tower",
+      label: 'Willis Tower',
       draggable: false
     }
   ];
+
   navLinks: link[] = [
     {
-      label: "College"
+      label: 'College'
     },
     {
-      label: "Restaurants"
+      label: 'Restaurants'
     },
     {
-      label: "Lifestyle"
+      label: 'Lifestyle'
     },
     {
-      label: "Crime"
+      label: 'Crime'
     },
     {
-      label: "Entertainment"
+      label: 'Entertainment'
     },
     {
-      label: "Transit"
+      label: 'Transit'
     }
   ];
 
@@ -64,9 +64,9 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ['address']
       });
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
@@ -75,6 +75,8 @@ export class AppComponent implements OnInit{
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+          this.markers.push({markerLat: place.geometry.location.lat(), markerLng: place.geometry.location.lng(),
+            label: place.name, draggable: false});
 
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
@@ -86,6 +88,7 @@ export class AppComponent implements OnInit{
 
   }
 }
+
 interface marker{
   markerLat: number;
   markerLng: number;
