@@ -9,12 +9,12 @@
 <body>
   <header>
 
-<!--
+
       <button onclick="login()"  mat-button>Sign in</button>
       <button mat-button>Log out</button>
--->
 
-    <app-nav></app-nav>
+
+    <!--<app-nav></app-nav>-->
 
   </header>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg"></script>-->
@@ -43,9 +43,9 @@
     </a>
   </nav>
 
-  <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
+  <!--<agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">-->
+    <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+  <!--</agm-map>-->
   <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker
       *ngFor="let m of markers;"

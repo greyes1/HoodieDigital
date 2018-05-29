@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataServiceService }  from './data-service.service';
 import { } from 'googlemaps';
 
 
@@ -18,6 +20,7 @@ export class AppComponent implements OnInit{
   public lng: number = -87.6298;
   public zoom: number = 8;
   public searchControl: FormControl;
+
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -57,10 +60,13 @@ export class AppComponent implements OnInit{
     }
   ];
 
+
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
+    //private dataServiceService: DataServiceService
   ) {}
+
 
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
@@ -84,11 +90,18 @@ export class AppComponent implements OnInit{
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
           this.zoom = 15;
+          //this.getHeroes();
+          //Issue Here:
+          //this.dataServiceService.getCenter(<google.maps.places.PlaceResult>place).subscribe(markers => this.markers = markers);
         });
       });
-    });
 
+    });
   }
+  //And here:
+  // getHeroes(): void {
+  //   this.dataServiceService.getPlaces().subscribe(markers => this.markers= markers);
+  // }
 }
 interface marker{
   markerLat: number;
