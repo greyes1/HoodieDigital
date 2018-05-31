@@ -16,6 +16,8 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { GeoService } from './geo.service';
+import { DataService } from './data.service';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { GeoService } from './geo.service';
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
+    DataService,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
