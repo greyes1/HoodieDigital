@@ -1,22 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-  </head>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+</head>
 <body>
-  <header>
+<header>
 
 
-      <button onclick="login()"  mat-button>Sign in</button>
-      <button mat-button>Log out</button>
+  <button onclick="login()"  mat-button>Sign in</button>
+  <button mat-button>Log out</button>
 
 
-    <!--<app-nav></app-nav>-->
+  <!--<app-nav></app-nav>-->
 
-  </header>
+</header>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg"></script>-->
 <!--<script  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>-->
 <div style="text-align:center">
@@ -35,30 +35,43 @@
   <nav mat-tab-nav-bar>
     <a mat-tab-link
        *ngFor="let link of navLinks"
-       position= 0>
-       <!--[routerLink]="link.path"-->
-       <!--routerLinkActive #rla="routerLinkActive"-->
-       <!--[active]="rla.isActive">-->
+       position= 0
+       [active]="rla.isActive"
+        >
+      <!--[routerLink]="link.path"-->
+      <!--routerLinkActive #rla="routerLinkActive"-->
+      <!--[active]="rla.isActive">-->
       {{link.label}}
     </a>
   </nav>
 
   <!--<agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">-->
-    <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+  <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
   <!--</agm-map>-->
   <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker
       *ngFor="let m of markers;"
       [latitude]="m.markerLat"
       [longitude]="m.markerLng"
-      [label] = "m.label"
       [draggable]="m.draggable"
     >
     </agm-marker>
-  <!--<agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>-->
+    <!--<agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>-->
   </agm-map>
   <span id="userName"></span>
 </div>
+
+<mat-card
+  *ngFor="let m of markers;"
+>
+  <mat-card-title> <span *ngIf="m.listSpot == 0"> {{"Your center is: "}} </span> {{m.label}} <span *ngIf="m.listSpot > 0"> {{"(" + m.listSpot + ")"}} </span> </mat-card-title>
+  <mat-card-content *ngIf="m.listSpot > 0"> {{
+    "Address: " + m.placeObj.formatted_address +
+    "Phone number: " + m.placeObj.formatted_phone_number + "\n"
+  }}</mat-card-content>
+  <!--<mat-card-subtitle> {{m.listSpot}} </mat-card-subtitle>-->
+</mat-card>
+
 </body>
 <script>
   var firebase = require('firebase');
