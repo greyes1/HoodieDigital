@@ -8,7 +8,8 @@ import { DataService } from './data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [DataService]
 })
 
 export class AppComponent implements OnInit{
@@ -17,10 +18,12 @@ export class AppComponent implements OnInit{
   public lng: number = -87.6298;
   public zoom: number = 10.5;
   public searchControl: FormControl;
+  public geoJsonObject: Object;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
+  public heatMarks: Object[];
   markers: marker[] = [
     {
       markerLat: 41.8827,
@@ -60,10 +63,20 @@ export class AppComponent implements OnInit{
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private DataService: DataService
+    private dataService: DataService
   ) {}
 
+  getJSON(): void {
+    this.dataService.getJSON()
+      .subscribe(resGeoJsonData => this.geoJsonObject = resGeoJsonData);
+    console.log(this.geoJsonObject);
+    console.log(this);
+  }
   ngOnInit() {
+    this.getJSON();
+    console.log('AAAA' + this.dataService.getJSON().subscribe(x => this.heatMarks.push(x)));
+    // console.log(this.dataService.getJSON());
+    console.log(this.heatMarks);
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -84,42 +97,26 @@ export class AppComponent implements OnInit{
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
           this.zoom = 12;
-
-          this.DataService.getJSON().subscribe(data => {
-            console.log(data);
-          });
         });
       });
     });
 
   }
 }
-/*
-function for adding heat map layer later on after we figure out how to import data
+
 
 function MockHeatLayer(heatLayer) {
   // Adding 500 Data Points
-  var map, pointarray, heatmap;
+  var map, heatmap;
 
   var crimeData = [
-    new google.maps.LatLng(37.782551, -122.445368),
-    new google.maps.LatLng(37.782745, -122.444586),
-    new google.maps.LatLng(37.782842, -122.443688),
-    new google.maps.LatLng(37.782919, -122.442815),
-    new google.maps.LatLng(37.782992, -122.442112),
-    new google.maps.LatLng(37.783100, -122.441461),
-    new google.maps.LatLng(37.783206, -122.440829),
-    new google.maps.LatLng(37.783273, -122.440324),
-    new google.maps.LatLng(37.783316, -122.440023),
-    new google.maps.LatLng(37.783357, -122.439794),
-    new google.maps.LatLng(37.783371, -122.439687)
   ];
 
 
   var pointArray = new google.maps.MVCArray(crimeData);
   heatLayer.setData(pointArray);
 };
-*/
+
 
 interface marker{
   markerLat: number;

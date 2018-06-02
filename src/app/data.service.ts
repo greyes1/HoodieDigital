@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
+
 @Injectable()
 export class DataService {
 
   constructor(private http: HttpClient) {
     this.getJSON().subscribe(data => {
-      console.log(data);
+      return this.http.get('./assets/cityCrimeData.json');
     });
   }
 

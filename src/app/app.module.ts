@@ -38,7 +38,6 @@ import { DataService } from './data.service';
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
-    DataService,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -49,7 +48,7 @@ import { DataService } from './data.service';
       libraries: ['places']
     })
   ],
-  providers: [GeoService],
+  providers: [GeoService, DataService],
   bootstrap: [AppComponent],
   entryComponents: [MyDialogComponent]
 })
