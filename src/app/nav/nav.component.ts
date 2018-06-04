@@ -16,7 +16,6 @@ export class NavComponent implements OnInit {
     this.af.authState.subscribe(
       (auth) => {
         if (auth != null) {
-          this.user = af.authState;
           this.authenticated = true;
         }
       });

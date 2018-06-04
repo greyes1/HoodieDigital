@@ -25,18 +25,6 @@ export class AppComponent implements OnInit{
 
   public heatMarks: Object[];
   markers: marker[] = [
-    {
-      markerLat: 41.8827,
-      markerLng: -87.6233,
-      label: 'Bean',
-      draggable: false
-    },
-    {
-      markerLat: 41.8789,
-      markerLng: -87.6359,
-      label: 'Willis Tower',
-      draggable: false
-    }
   ];
 
   navLinks: link[] = [
