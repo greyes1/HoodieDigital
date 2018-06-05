@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { DataService } from './data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataServiceService }  from './data-service.service';
 import { } from 'googlemaps';
@@ -10,22 +11,22 @@ import { } from 'googlemaps';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [DataServiceService]
+  styleUrls: ['./app.component.scss'],
+  providers: [DataService]
 })
 
 export class AppComponent implements OnInit{
-
   title: string = 'AptSquad';
   public lat: number = 41.8781;
   public lng: number = -87.6298;
-  public zoom: number = 12;
+  public zoom: number = 10.5;
   public searchControl: FormControl;
   public placeCenter: string = "Please enter a place for us to center your search around";
   public indexValue: string;
 
+  public geoJsonObject: Object;
 
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   public markers: marker[] = [
@@ -41,23 +42,26 @@ export class AppComponent implements OnInit{
     //   label: "Willis Tower",
     //   draggable: false
     // }
-  ];
+
+];
+  public heatMarks: Object[];
+
   public searchMarkers: marker[];
   navLinks: link[] = [
     {
       label: "Restaurants"
     },
     {
-      label: "Lifestyle"
+      label: 'Lifestyle'
     },
     {
-      label: "Crime"
+      label: 'Crime'
     },
     {
-      label: "Entertainment"
+      label: 'Entertainment'
     },
     {
-      label: "Transit"
+      label: 'Transit'
     }
   ];
 
@@ -65,14 +69,24 @@ export class AppComponent implements OnInit{
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    // private dataServiceService: DataServiceService
+    private dataService: DataService
   ) {}
 
 
+  getJSON(): void {
+    this.dataService.getJSON()
+      .subscribe(resGeoJsonData => this.geoJsonObject = resGeoJsonData);
+    console.log(this.geoJsonObject);
+    console.log(this);
+  }
   ngOnInit() {
+    this.getJSON();
+    console.log('AAAA' + this.dataService.getJSON().subscribe(x => this.heatMarks.push(x)));
+    // console.log(this.dataService.getJSON());
+    console.log(this.heatMarks);
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ['address']
       });
       // let search = new google.maps.places.PlacesService(doucment.get);
 
@@ -96,25 +110,29 @@ export class AppComponent implements OnInit{
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.zoom = 15;
-          // this.getHeroes();
-          //Issue Here:
-          // this.dataServiceService.getCenter(<google.maps.places.PlaceResult>place).subscribe(markers => this.markers = markers);
+          this.zoom = 12;
         });
       });
 
     });
 
   }
-//   //And here:
-//   getHeroes(): void {
-//     this.dataServiceService.getPlaces().subscribe(markers => this.markers= markers);
-//   }
-  public log(message: string) {
-    let toPrint = document.getElementById("debug").innerText = message;
-
-  }
 }
+
+
+function MockHeatLayer(heatLayer) {
+  // Adding 500 Data Points
+  var map, heatmap;
+
+  var crimeData = [
+  ];
+
+
+  var pointArray = new google.maps.MVCArray(crimeData);
+  heatLayer.setData(pointArray);
+};
+
+
 interface marker{
   placeObj: google.maps.places.PlaceResult;
   markerLat: number;

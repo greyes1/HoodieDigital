@@ -1,22 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-</head>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebaseß.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&amp;libraries=visualization"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    <script type="text/javascript" src="node_modules/auth0-js/build/auth0.js"></script>
+  </head>
 <body>
-<header>
-
-
-  <button onclick="login()"  mat-button>Sign in</button>
-  <button mat-button>Log out</button>
-
-
-  <!--<app-nav></app-nav>-->
-
-</header>
+  <header>
+    <app-nav></app-nav>
+  </header>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg"></script>-->
 <!--<script  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script>-->
 <div style="text-align:center">
@@ -36,9 +32,9 @@
     <a mat-tab-link
        *ngFor="let link of navLinks"
        position= 0>
-      <!--[routerLink]="link.path"-->
-      <!--routerLinkActive #rla="routerLinkActive"-->
-      <!--[active]="rla.isActive">-->
+       <!--[routerLink]="link.path"-->
+       <!--routerLinkActive #rla="routerLinkActive"-->
+       <!--[active]="rla.isActive">-->
       {{link.label}}
     </a>
   </nav>
@@ -51,10 +47,12 @@
       *ngFor="let m of markers;"
       [latitude]="m.markerLat"
       [longitude]="m.markerLng"
+      [label] = "m.label"
       [draggable]="m.draggable"
     >
     </agm-marker>
     <!--<agm-marker [latitude]="beanLat" [longitude]="beanLng"></agm-marker>-->
+
   </agm-map>
   <span id="userName"></span>
 </div>

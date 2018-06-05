@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
   user: Observable<Firebase.User>
@@ -16,7 +16,6 @@ export class NavComponent implements OnInit {
     this.af.authState.subscribe(
       (auth) => {
         if (auth != null) {
-          this.user = af.authState;
           this.authenticated = true;
         }
       });
