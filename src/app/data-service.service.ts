@@ -32,13 +32,13 @@ export class DataServiceService {
   //       .subscribe(heroes => this.heroes = heroes);
   //
     //
-    // getPlaces (): Observable<google.maps.places.PlaceResult[]> {
-    //   return this.http.get<google.maps.places.PlaceResult[]>(this.restUrl)
-    //     .pipe(
-    //       tap(heroes => this.log(`fetched heroes`)),
-    //       catchError(this.handleError('getPlaces', []))
-    //     );
-    // }
+    getPlaces (): Observable<any> {
+      return this.http.get(this.restUrl)
+        .pipe(
+          tap(heroes => this.log(`fetched heroes`))
+          //catchError(this.handleError('getPlaces', []))
+        );
+    }
     getCenter(center: google.maps.places.PlaceResult): Observable<google.maps.places.PlaceResult[]> {
       this.log("constructed");
         const url = `${this.restUrl}/?latitude=${center.geometry.location.lat()}&longitude=${center.geometry.location.lat()}`;

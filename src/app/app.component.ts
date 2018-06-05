@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { DataServiceService }  from './data-service.service';
+import { DataServiceService }  from './data-service.service';
 import { } from 'googlemaps';
 
 
@@ -10,7 +10,8 @@ import { } from 'googlemaps';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [DataServiceService]
 })
 
 export class AppComponent implements OnInit{
@@ -73,9 +74,8 @@ export class AppComponent implements OnInit{
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
-      let search = new google.maps.places.PlacesService(<HTMLDivElement>document.getElementsByClassName("container").item(0));
+      // let search = new google.maps.places.PlacesService(doucment.get);
 
-      // search.nearbySearch(PlacesSearchRequest: {});
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
@@ -88,6 +88,7 @@ export class AppComponent implements OnInit{
           //This is where the data is added to the array that displays to the map
           this.markers.push({placeObj: place, markerLat: place.geometry.location.lat(), markerLng: place.geometry.location.lng(),
                             label: place.name, draggable: false, listSpot:this.markers.length});
+          //The first item added is used as the center point, and every subsequent item is displayed as a "nearby result" however due to issues with displaying nearby establishemnts it only displays the items entered in the search box
           // this.log(place.name);
           // this.indexValue = listSpot.toString();
           // document.getElementById("placeCenter").innerText = place.name;

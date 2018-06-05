@@ -35,9 +35,7 @@
   <nav mat-tab-nav-bar>
     <a mat-tab-link
        *ngFor="let link of navLinks"
-       position= 0
-       [active]="rla.isActive"
-        >
+       position= 0>
       <!--[routerLink]="link.path"-->
       <!--routerLinkActive #rla="routerLinkActive"-->
       <!--[active]="rla.isActive">-->
@@ -65,9 +63,11 @@
   *ngFor="let m of markers;"
 >
   <mat-card-title> <span *ngIf="m.listSpot == 0"> {{"Your center is: "}} </span> {{m.label}} <span *ngIf="m.listSpot > 0"> {{"(" + m.listSpot + ")"}} </span> </mat-card-title>
+  <mat-card-subtitle *ngIf="m.listSpot > 0">
+  {{"Address: " + m.placeObj.formatted_address + '\n'}}
+  </mat-card-subtitle>
   <mat-card-content *ngIf="m.listSpot > 0"> {{
-    "Address: " + m.placeObj.formatted_address +
-    "Phone number: " + m.placeObj.formatted_phone_number + "\n"
+    "Phone number: " + m.placeObj.formatted_phone_number
   }}</mat-card-content>
   <!--<mat-card-subtitle> {{m.listSpot}} </mat-card-subtitle>-->
 </mat-card>
