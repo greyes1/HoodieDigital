@@ -2,12 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AgmCoreModule, MapsAPILoader} from '@agm/core';
-// import { HttpClientModule }    from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
-// import { MatCardModule } from '@angular/material/card';
-
-
-// import { AgmCoreModule } from '@agm/core';
 import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
@@ -22,30 +17,35 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { GeoService } from './geo.service';
 import { DataService } from './data.service';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent,
+    LoginDialogComponent,
+    MyDialogComponent,
   ],
   imports: [
-    MatTabsModule,
+    CommonModule,
+    BrowserModule,
+    FormsModule,
     MatCardModule,
     MatButtonModule,
-    BrowserModule,
     MatCheckboxModule,
-    MatDialogModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
-    LoginDialogComponent,
-    NavComponent,
-    AngularFireModule,
-    environment,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatTabsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AgmCoreModule.forRoot({
+      // please get your own API key here:AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: 'AIzaSyDzAW9YMqqCV-x7U7Oy-McPz5BtFcU5fsg',
       libraries: ['places']
     }),
