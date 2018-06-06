@@ -43,20 +43,28 @@
       multiple="true"
     >
       <mat-chip
-        (click)="check()"
+        (click)="checkRestaurants()"
       >
         Restaurants
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="checkLifestyle()"
+      >
         Lifestyle
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="checkCrime()"
+      >
         Crime
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="checkEntertainment()"
+      >
         Entertainment
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="checkTransit()"
+      >
         Transit
       </mat-chip>
     </mat-chip-list>
@@ -64,12 +72,15 @@
   <!--<agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">-->
   <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
   <!--</agm-map>-->
+
+
+  <!--This is the map-->
   <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker
       *ngFor="let m of markers;"
       [latitude]="m.markerLat"
       [longitude]="m.markerLng"
-      [label] = "m.label"
+      [label] = "m.listSpot.toString()"
       [draggable]="m.draggable"
 
     >
@@ -82,6 +93,7 @@
 <div id="test">
 
 </div>
+  <!--this is where the markers are displayed-->
 <mat-card
   *ngFor="let m of markers;"
 >

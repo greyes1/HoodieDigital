@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
+  //Stores the markers that are displayed to the map
   public markers: marker[] = [
     // {
     //   markerLat: 41.8827,
@@ -64,7 +65,7 @@ export class AppComponent implements OnInit{
       label: 'Transit'
     }
   ];
-
+  selected: string[]=[];
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -72,9 +73,50 @@ export class AppComponent implements OnInit{
     private dataService: DataService
   ) {}
 
-
-  check(){
-    document.getElementById("debug").innerText = "Hello World!";
+  // These methods add the selected chip to the selected array, and remove the chip if it's re-selected
+  checkRestaurants(): void{
+    if(this.selected.includes("Restaurant")){
+      this.selected[this.selected.indexOf("Restaurant")] = "";
+    }else{
+      this.selected.push("Restaurant");
+    }
+    this.updateThing();
+  }
+  checkLifestyle(): void{
+    if(this.selected.includes("Lifestyle")){
+      this.selected[this.selected.indexOf("Lifestyle")] = "";
+    }else{
+      this.selected.push("Lifestyle");
+    }
+    this.updateThing();
+  }
+  checkCrime(): void{
+    if(this.selected.includes("Crime")){
+      this.selected[this.selected.indexOf("Crime")] = "";
+    }else{
+      this.selected.push("Crime");
+    }
+    this.updateThing();
+  }
+  checkEntertainment(): void{
+    if(this.selected.includes("Entertainment")){
+      this.selected[this.selected.indexOf("Entertainment")] = "";
+    }else{
+      this.selected.push("Entertainment");
+    }
+    this.updateThing();
+  }
+  checkTransit(): void{
+    if(this.selected.includes("Transit")){
+      this.selected[this.selected.indexOf("Transit")] = "";
+    }else{
+      this.selected.push("Transit");
+    }
+    this.updateThing();
+  }
+  //Updates the debug element that displays the selected chips
+  updateThing(){
+    document.getElementById("debug").innerText = "Buttons Pressed: " + this.selected.toString();
   }
   getJSON(): void {
     this.dataService.getJSON()
