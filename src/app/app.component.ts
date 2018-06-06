@@ -73,6 +73,9 @@ export class AppComponent implements OnInit{
   ) {}
 
 
+  check(){
+    document.getElementById("debug").innerText = "Hello World!";
+  }
   getJSON(): void {
     this.dataService.getJSON()
       .subscribe(resGeoJsonData => this.geoJsonObject = resGeoJsonData);

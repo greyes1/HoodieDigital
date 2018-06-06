@@ -18,6 +18,8 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { GeoService } from './geo.service';
 import { DataService } from './data.service';
 import {CommonModule} from '@angular/common';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import {CommonModule} from '@angular/common';
   imports: [
     CommonModule,
     BrowserModule,
+    MatChipsModule,
     FormsModule,
     MatCardModule,
     MatButtonModule,

@@ -43,7 +43,7 @@
       multiple="true"
     >
       <mat-chip
-        (click)="valid()"
+        (click)="check()"
       >
         Restaurants
       </mat-chip>
@@ -94,7 +94,9 @@
   </mat-card-content>
   <!--<mat-card-subtitle> {{m.listSpot}} </mat-card-subtitle>-->
 </mat-card>
+<div id="debug">
 
+</div>
 </body>
 <script>
   var firebase = require('firebase');
