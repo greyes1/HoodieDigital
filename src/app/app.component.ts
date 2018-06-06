@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
+  //Stores the markers that are displayed to the map
   public markers: marker[] = [
     // {
     //   markerLat: 41.8827,
@@ -72,7 +73,7 @@ export class AppComponent implements OnInit{
     private dataService: DataService
   ) {}
 
-
+  // These methods add the selected chip to the selected array, and remove the chip if it's re-selected
   checkRestaurants(): void{
     if(this.selected.includes("Restaurant")){
       this.selected[this.selected.indexOf("Restaurant")] = "";
@@ -113,6 +114,7 @@ export class AppComponent implements OnInit{
     }
     this.updateThing();
   }
+  //Updates the debug element that displays the selected chips
   updateThing(){
     document.getElementById("debug").innerText = "Buttons Pressed: " + this.selected.toString();
   }
