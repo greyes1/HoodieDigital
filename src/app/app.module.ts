@@ -1,16 +1,9 @@
+//Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 import { AgmCoreModule, MapsAPILoader} from '@agm/core';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatCardModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
-import { MyDialogComponent } from './my-dialog/my-dialog.component';
-import { NavComponent } from './nav/nav.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule} from 'angularfire2/auth';
@@ -18,9 +11,20 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { GeoService } from './geo.service';
 import { DataService } from './data.service';
 import {CommonModule} from '@angular/common';
+
+//Components
+import { AppComponent } from './app.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { MyDialogComponent } from './my-dialog/my-dialog.component';
+import { NavComponent } from './nav/nav.component';
+
+
+//material imports
+import { MaterialModule } from '../material.module';
+import { MatButtonModule, MatCheckboxModule, MatDialogModule, MatCardModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,8 +36,8 @@ import {MatChipsModule} from '@angular/material/chips';
   imports: [
     CommonModule,
     BrowserModule,
-    MatChipsModule,
     FormsModule,
+    MatChipsModule,
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,

@@ -12,6 +12,7 @@ export class NavComponent implements OnInit {
   user: Observable<Firebase.User>
   authenticated = false;
 
+  //constructor that evaluates to true if the auth is not null
   constructor(public af: AngularFireAuth) {
     this.af.authState.subscribe(
       (auth) => {
@@ -25,13 +26,14 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+//Login in method that allows users to login with firebase and the google api, also logs it to the console if successful
   login() {
     this.af.auth.signInWithPopup(new Firebase.auth.GoogleAuthProvider());
     this.authenticated = true;
     console.log('sign in successful');
   }
 
-
+//Login out method that allows users to out of the app, also logs it to the console if successful
   logout() {
     this.af.auth.signOut();
     this.authenticated = false;

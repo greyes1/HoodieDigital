@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-
+//data service used to pull json data from local file
 @Injectable()
 export class DataService {
 

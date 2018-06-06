@@ -1,7 +1,7 @@
 <nav class = "nav">
   <ul class="nav-bar-right">
     <button class="button" *ngIf="!authenticated" mat-stroked-button (click)="login()">Login</button>
-    <button class="button" *ngIf="authenticated" mat-raised-button (click)="logout()">Log out</button>
+    <button class="button" *ngIf="authenticated" mat-raised-button (click)="logout()">Logout</button>
     <div class="userData" *ngIf="af.authState | async as authUser"><h4><img [src]="authUser.photoURL"> Welcome {{authUser.displayName}} !</h4></div>
   </ul>
 </nav>
