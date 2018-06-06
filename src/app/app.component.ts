@@ -64,7 +64,7 @@ export class AppComponent implements OnInit{
       label: 'Transit'
     }
   ];
-
+  selected: string[]=[];
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -73,8 +73,48 @@ export class AppComponent implements OnInit{
   ) {}
 
 
-  check(name: String){
-    document.getElementById("debug").innerText = "Button Pressed: " + name;
+  checkRestaurants(): void{
+    if(this.selected.includes("Restaurant")){
+      this.selected[this.selected.indexOf("Restaurant")] = "";
+    }else{
+      this.selected.push("Restaurant");
+    }
+    this.updateThing();
+  }
+  checkLifestyle(): void{
+    if(this.selected.includes("Lifestyle")){
+      this.selected[this.selected.indexOf("Lifestyle")] = "";
+    }else{
+      this.selected.push("Lifestyle");
+    }
+    this.updateThing();
+  }
+  checkCrime(): void{
+    if(this.selected.includes("Crime")){
+      this.selected[this.selected.indexOf("Crime")] = "";
+    }else{
+      this.selected.push("Crime");
+    }
+    this.updateThing();
+  }
+  checkEntertainment(): void{
+    if(this.selected.includes("Entertainment")){
+      this.selected[this.selected.indexOf("Entertainment")] = "";
+    }else{
+      this.selected.push("Entertainment");
+    }
+    this.updateThing();
+  }
+  checkTransit(): void{
+    if(this.selected.includes("Transit")){
+      this.selected[this.selected.indexOf("Transit")] = "";
+    }else{
+      this.selected.push("Transit");
+    }
+    this.updateThing();
+  }
+  updateThing(){
+    document.getElementById("debug").innerText = "Buttons Pressed: " + this.selected.toString();
   }
   getJSON(): void {
     this.dataService.getJSON()
