@@ -43,20 +43,28 @@
       multiple="true"
     >
       <mat-chip
-        (click)="check()"
+        (click)="check('Restaurants')"
       >
         Restaurants
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="check('Lifestyle')"
+      >
         Lifestyle
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="check('Crime')"
+      >
         Crime
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="check('Entertainment')"
+      >
         Entertainment
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="check('Transit')"
+      >
         Transit
       </mat-chip>
     </mat-chip-list>

@@ -73,8 +73,8 @@ export class AppComponent implements OnInit{
   ) {}
 
 
-  check(){
-    document.getElementById("debug").innerText = "Hello World!";
+  check(name: String){
+    document.getElementById("debug").innerText = "Button Pressed: " + name;
   }
   getJSON(): void {
     this.dataService.getJSON()
